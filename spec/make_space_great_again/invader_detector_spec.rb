@@ -24,9 +24,13 @@ describe MakeSpaceGreatAgain::InvaderDetector do
   end
  
   context "interface" do
-    subject { MakeSpaceGreatAgain::InvaderDetector.new(radar_sample, [invader_sample]) }
+    subject { MakeSpaceGreatAgain::InvaderDetector.new(radar_sample, [invader_sample], { confidence: 0.5 }) }
 
     it { should respond_to(:get_threats) }
+
+    it "should override default options with passed options" do
+      expect(subject.instance_variable_get(:@options)[:confidence]).to eq(0.5)
+    end
   end
 
   context "missing invaders" do
