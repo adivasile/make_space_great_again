@@ -24,6 +24,7 @@ module MakeSpaceGreatAgain
       @options = {
         detector: MakeSpaceGreatAgain::RadarAnalyzer,
         confidence: 0.8,
+        threat_renderer: MakeSpaceGreatAgain::RadarViewer,
       }.merge(opts)
 
       @radar_sample = radar_sample
@@ -63,7 +64,7 @@ module MakeSpaceGreatAgain
             threats << {
               row: row,
               col: col,
-              radar_sample: MakeSpaceGreatAgain::RadarViewer.render(sub_sample),
+              radar_sample: @options[:threat_renderer].render(sub_sample),
               confidence: match_percentage,
             }
           end
