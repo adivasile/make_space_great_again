@@ -24,7 +24,7 @@ module MakeSpaceGreatAgain
       @options = {
         detector: MakeSpaceGreatAgain::RadarAnalyzer,
         confidence: 0.8,
-      }
+      }.merge(opts)
 
       @radar_sample = radar_sample
       @known_invaders = known_invaders
